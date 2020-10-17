@@ -17,7 +17,7 @@ LED_PIN = 18          # GPIO pin connected to the pixels (18 uses PWM!).
 # LED_PIN = 10        # GPIO pin connected to the pixels (10 uses SPI /dev/spidev0.0).
 LED_FREQ_HZ = 800000  # LED signal frequency in hertz (usually 800khz)
 LED_DMA = 10          # DMA channel to use for generating signal (try 10)
-LED_BRIGHTNESS = 32  # Set to 0 for darkest and 255 for brightest
+LED_BRIGHTNESS = 100  # Set to 0 for darkest and 255 for brightest
 LED_INVERT = False    # True to invert the signal (when using NPN transistor level shift)
 LED_CHANNEL = 0       # set to '1' for GPIOs 13, 19, 41, 45 or 53
 
@@ -64,7 +64,7 @@ def rainbow(strip, wait_ms=20, iterations=1):
         time.sleep(wait_ms / 1000.0)
 
 
-def rainbowCycle(strip, wait_ms=20, iterations=5):
+def rainbowCycle(strip, wait_ms=10, iterations=5):
     """Draw rainbow that uniformly distributes itself across all pixels."""
     for j in range(256 * iterations):
         for i in range(strip.numPixels()):
@@ -91,7 +91,15 @@ if __name__ == '__main__':
     # Process arguments
     parser = argparse.ArgumentParser()
     parser.add_argument('-c', '--clear', action='store_true', help='clear the display on exit')
+    parser.add_argument('-b', '--brightness', action='store', dest='b', type=int, help='Set the brightness')
+    parser.add_argument('-a', '--all', action='store_true', dest='a', help='Run All Demos')
+    parser.add_argument('-w', '--whipe', action='store_true', dest='w', help='Only Run Whipe Demos')
+    parser.add_argument('-t', '--theater', action='store_true', dest='t', help='Only Run Theater Chase Demos')
+    parser.add_argument('-r', '--rainbow', action='store_true', dest='r', help='Only Run Rainbow Demos')
     args = parser.parse_args()
+
+    if args.b:
+        LED_BRIGHTNESS = args.b
 
     # Create NeoPixel object with appropriate configuration.
     strip = PixelStrip(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS, LED_CHANNEL)
@@ -105,18 +113,35 @@ if __name__ == '__main__':
     try:
 
         while True:
-            print('Color wipe animations.')
-            colorWipe(strip, Color(255, 0, 0))  # Red wipe
-            colorWipe(strip, Color(0, 255, 0))  # Blue wipe
-            colorWipe(strip, Color(0, 0, 255))  # Green wipe
-            print('Theater chase animations.')
-            theaterChase(strip, Color(127, 127, 127))  # White theater chase
-            theaterChase(strip, Color(127, 0, 0))  # Red theater chase
-            theaterChase(strip, Color(0, 0, 127))  # Blue theater chase
-            print('Rainbow animations.')
-            rainbow(strip)
-            rainbowCycle(strip)
-            theaterChaseRainbow(strip)
+            if args.a:
+                print('Color wipe animations.')
+                colorWipe(strip, Color(255, 0, 0))  # Red wipe
+                colorWipe(strip, Color(0, 255, 0))  # Blue wipe
+                colorWipe(strip, Color(0, 0, 255))  # Green wipe
+                print('Theater chase animations.')
+                theaterChase(strip, Color(127, 127, 127))  # White theater chase
+                theaterChase(strip, Color(127, 0, 0))  # Red theater chase
+                theaterChase(strip, Color(0, 0, 127))  # Blue theater chase
+                thestherChaseRainbow(strip)
+                print('Rainbow animations.')
+                rainbow(strip)
+                rainbowCycle(strip)
+                theaterChaseRainbow(strip)
+            if args.t:
+                theaterChase(strip, Color(127, 127, 127))  # White theater chase
+                theaterChase(strip, Color(127, 0, 0))  # Red theater chase
+                theaterChase(strip, Color(0, 0, 127))  # Blue theater chase
+            if args.w:
+                colorWipe(strip, Color(255, 0, 0))  # Red wipe
+                colorWipe(strip, Color(0, 255, 0))  # Blue wipe
+                colorWipe(strip, Color(0, 0, 255))  # Green wipe
+            if args.r:
+                rainbow(strip)
+                rainbowCycle(strip)
+
+
+
+
 
     except KeyboardInterrupt:
         if args.clear:

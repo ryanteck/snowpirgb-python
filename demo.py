@@ -99,6 +99,11 @@ def allTheaterChaseAnimations():
     theaterChaseRainbow(strip)
 
 
+def allRainbowAnimations():
+    rainbow(strip)
+    rainbowCycle(strip)
+
+
 # Main program logic follows:
 if __name__ == '__main__':
     # Process arguments
@@ -139,15 +144,13 @@ if __name__ == '__main__':
                 allTheaterChaseAnimations()
 
                 print('Rainbow animations.')
-                rainbow(strip)
-                rainbowCycle(strip)
+                allRainbowAnimations()
             if args.t:
                 allTheaterChaseAnimations()
             if args.w:
                 colorWipeAllAnimations()
             if args.r:
-                rainbow(strip)
-                rainbowCycle(strip)
+                allRainbowAnimations()
 
 
 

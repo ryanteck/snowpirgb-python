@@ -145,16 +145,15 @@ if __name__ == '__main__':
 
                 print('Rainbow animations.')
                 allRainbowAnimations()
+
             if args.t:
                 allTheaterChaseAnimations()
+
             if args.w:
                 allColorWipeAnimations()
+
             if args.r:
                 allRainbowAnimations()
-
-
-
-
 
     except KeyboardInterrupt:
         if args.clear:

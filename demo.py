@@ -86,7 +86,7 @@ def theaterChaseRainbow(strip, wait_ms=50):
                 strip.setPixelColor(i + q, 0)
 
 
-def colorWipeAllAnimations():
+def allColorWipeAnimations():
     colorWipe(strip, Color(255, 0, 0))  # Red wipe
     colorWipe(strip, Color(0, 255, 0))  # Blue wipe
     colorWipe(strip, Color(0, 0, 255))  # Green wipe
@@ -138,7 +138,7 @@ if __name__ == '__main__':
         while True:
             if args.a:
                 print('Color wipe animations.')
-                colorWipeAllAnimations()
+                allColorWipeAnimations()
 
                 print('Theater chase animations.')
                 allTheaterChaseAnimations()
@@ -148,7 +148,7 @@ if __name__ == '__main__':
             if args.t:
                 allTheaterChaseAnimations()
             if args.w:
-                colorWipeAllAnimations()
+                allColorWipeAnimations()
             if args.r:
                 allRainbowAnimations()
 

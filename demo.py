@@ -92,11 +92,16 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('-c', '--clear', action='store_true', help='clear the display on exit')
     parser.add_argument('-b', '--brightness', action='store', dest='b', type=int, help='Set the brightness')
-    parser.add_argument('-a', '--all', action='store_true', dest='a', help='Run All Demos')
+    parser.add_argument('-a', '--all', action='store_true', dest='a', help='Run All Demos (the default)')
     parser.add_argument('-w', '--whipe', action='store_true', dest='w', help='Only Run Whipe Demos')
     parser.add_argument('-t', '--theater', action='store_true', dest='t', help='Only Run Theater Chase Demos')
     parser.add_argument('-r', '--rainbow', action='store_true', dest='r', help='Only Run Rainbow Demos')
     args = parser.parse_args()
+
+    # If no demo modes set, turn on '--all'
+    if not (args.a or args.w or args.t or args.r):
+        print('No modes given: running all demos')
+        args.a = True
 
     if args.b:
         LED_BRIGHTNESS = args.b

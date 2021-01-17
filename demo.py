@@ -88,8 +88,8 @@ def theaterChaseRainbow(strip, wait_ms=50):
 
 def allColorWipeAnimations():
     colorWipe(strip, Color(255, 0, 0))  # Red wipe
-    colorWipe(strip, Color(0, 255, 0))  # Blue wipe
-    colorWipe(strip, Color(0, 0, 255))  # Green wipe
+    colorWipe(strip, Color(0, 255, 0))  # Green wipe
+    colorWipe(strip, Color(0, 0, 255))  # Blue wipe
 
 
 def allTheaterChaseAnimations():

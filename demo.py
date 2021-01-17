@@ -92,6 +92,13 @@ def colorWipeAllAnimations():
     colorWipe(strip, Color(0, 0, 255))  # Green wipe
 
 
+def allTheaterChaseAnimations():
+    theaterChase(strip, Color(127, 127, 127))  # White theater chase
+    theaterChase(strip, Color(127, 0, 0))  # Red theater chase
+    theaterChase(strip, Color(0, 0, 127))  # Blue theater chase
+    theaterChaseRainbow(strip)
+
+
 # Main program logic follows:
 if __name__ == '__main__':
     # Process arguments
@@ -129,18 +136,13 @@ if __name__ == '__main__':
                 colorWipeAllAnimations()
 
                 print('Theater chase animations.')
-                theaterChase(strip, Color(127, 127, 127))  # White theater chase
-                theaterChase(strip, Color(127, 0, 0))  # Red theater chase
-                theaterChase(strip, Color(0, 0, 127))  # Blue theater chase
-                theaterChaseRainbow(strip)
+                allTheaterChaseAnimations()
+
                 print('Rainbow animations.')
                 rainbow(strip)
                 rainbowCycle(strip)
             if args.t:
-                theaterChase(strip, Color(127, 127, 127))  # White theater chase
-                theaterChase(strip, Color(127, 0, 0))  # Red theater chase
-                theaterChase(strip, Color(0, 0, 127))  # Blue theater chase
-                theaterChaseRainbow(strip)
+                allTheaterChaseAnimations()
             if args.w:
                 colorWipeAllAnimations()
             if args.r:

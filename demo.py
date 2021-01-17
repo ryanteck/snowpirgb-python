@@ -86,6 +86,24 @@ def theaterChaseRainbow(strip, wait_ms=50):
                 strip.setPixelColor(i + q, 0)
 
 
+def allColorWipeAnimations():
+    colorWipe(strip, Color(255, 0, 0))  # Red wipe
+    colorWipe(strip, Color(0, 255, 0))  # Green wipe
+    colorWipe(strip, Color(0, 0, 255))  # Blue wipe
+
+
+def allTheaterChaseAnimations():
+    theaterChase(strip, Color(127, 127, 127))  # White theater chase
+    theaterChase(strip, Color(127, 0, 0))  # Red theater chase
+    theaterChase(strip, Color(0, 0, 127))  # Blue theater chase
+    theaterChaseRainbow(strip)
+
+
+def allRainbowAnimations():
+    rainbow(strip)
+    rainbowCycle(strip)
+
+
 # Main program logic follows:
 if __name__ == '__main__':
     # Process arguments
@@ -120,33 +138,22 @@ if __name__ == '__main__':
         while True:
             if args.a:
                 print('Color wipe animations.')
-                colorWipe(strip, Color(255, 0, 0))  # Red wipe
-                colorWipe(strip, Color(0, 255, 0))  # Blue wipe
-                colorWipe(strip, Color(0, 0, 255))  # Green wipe
+                allColorWipeAnimations()
+
                 print('Theater chase animations.')
-                theaterChase(strip, Color(127, 127, 127))  # White theater chase
-                theaterChase(strip, Color(127, 0, 0))  # Red theater chase
-                theaterChase(strip, Color(0, 0, 127))  # Blue theater chase
-                theaterChaseRainbow(strip)
+                allTheaterChaseAnimations()
+
                 print('Rainbow animations.')
-                rainbow(strip)
-                rainbowCycle(strip)
-                theaterChaseRainbow(strip)
+                allRainbowAnimations()
+
             if args.t:
-                theaterChase(strip, Color(127, 127, 127))  # White theater chase
-                theaterChase(strip, Color(127, 0, 0))  # Red theater chase
-                theaterChase(strip, Color(0, 0, 127))  # Blue theater chase
+                allTheaterChaseAnimations()
+
             if args.w:
-                colorWipe(strip, Color(255, 0, 0))  # Red wipe
-                colorWipe(strip, Color(0, 255, 0))  # Blue wipe
-                colorWipe(strip, Color(0, 0, 255))  # Green wipe
+                allColorWipeAnimations()
+
             if args.r:
-                rainbow(strip)
-                rainbowCycle(strip)
-
-
-
-
+                allRainbowAnimations()
 
     except KeyboardInterrupt:
         if args.clear:
